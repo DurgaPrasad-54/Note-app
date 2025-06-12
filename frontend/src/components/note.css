@@ -51,13 +51,15 @@
   padding: 1rem 1.25rem 2.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s ease;
+  word-wrap: break-word;    /* break long words */
+  overflow-wrap: break-word; /* better browser support */
+  white-space: normal;
+  
   min-height: 140px;
   margin-bottom: 1.5rem;
 }
 
 .note-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
 }
 
@@ -78,7 +80,14 @@
   bottom: 1rem;
   right: 1rem;
   display: flex;
-  gap: 0.4rem;
+  gap: 0.7rem;
+}
+.note-actions .date {
+  font-size: 0.8rem;
+  color: #6b7280;
+  display: flex;
+  flex-direction: column-reverse;
+  white-space: nowrap;
 }
 
 .note-actions .btn-sm {
@@ -88,6 +97,7 @@
   border: none;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.1s ease;
+ 
 }
 
 .note-actions .delete-btn {
@@ -125,7 +135,6 @@
   text-decoration: none;
   padding: 0.9rem 1.5rem;
   border-radius: 14px;
-  box-shadow: 0 8px 20px #2563eb88;
   transition: background-color 0.3s ease, transform 0.2s ease;
   display: inline-block;
 }

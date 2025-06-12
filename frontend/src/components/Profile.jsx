@@ -25,6 +25,9 @@ const Profile = () => {
         setProfile(null)
       })
   }, [token])
+  if(!token){
+    navigate('/login')
+  } 
   function handleclick(){
     localStorage.removeItem('Token')
     navigate('/login')
