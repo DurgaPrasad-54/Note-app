@@ -1,6 +1,7 @@
 
 import {Link,useNavigate} from 'react-router-dom'
 import { useState } from 'react'
+import './logreg.css'
 
 const Register = () => {
   const [data,setData] = useState({
@@ -37,7 +38,7 @@ const Register = () => {
         
         navigate('/login')
 
-      },3000)
+      },1500)
 
     }).catch((err)=>{
 
@@ -58,7 +59,8 @@ const Register = () => {
                 <p>Already have an account <Link to={'/login'}>Login</Link></p>
                 
             </form>
-            <h1>{msg.text}</h1>
+            <h1 className={msg.type === 'success' ? 'success' : msg.type === 'error' ? 'error' : ''}>{msg.text}</h1>
+
         </div>
         </div>
     

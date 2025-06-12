@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import './create.css'
 
 const Createnote = () => {
     const Token  = localStorage.getItem("Token")
@@ -48,13 +49,15 @@ const Createnote = () => {
 
         <div className='inner'>
             <form onSubmit={handlesub}>
+                <h1 className='createh1'>Create Note</h1>
                 <input className='cn' type='text' name='title' placeholder='Title' value={note.title} onChange={handleinp} required />
                 <textarea className='cn' name="content" placeholder="Write your note here..." value={note.content} onChange={handleinp} required></textarea>
                 <button type='submit'>Create Note</button>
 
 
             </form>
-            <h1>{msg.text}</h1>
+            <h1 className={msg.type === 'success' ? 'success' : msg.type === 'error' ? 'error' : ''}>{msg.text}</h1>
+
         </div>
 
     </div>

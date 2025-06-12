@@ -1,0 +1,136 @@
+/* Note.css */
+
+.note-container {
+  padding: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Header */
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.app-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2563eb;
+  user-select: none;
+}
+
+.profile-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.profile-link:hover {
+  color: #1e40af;
+}
+
+/* Notes List */
+.note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Note Card */
+.note-card {
+  position: relative;
+  background: #fff;
+  padding: 1rem 1.25rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  min-height: 140px;
+  margin-bottom: 1.5rem;
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+}
+
+.note-card h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+  color: #1e3a8a;
+}
+
+.note-card p {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Button Actions */
+.note-actions {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.note-actions .btn-sm {
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.note-actions .delete-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.note-actions .delete-btn:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+.note-actions .edit-btn {
+  background-color: #2563eb;
+  color: white;
+}
+
+.note-actions .edit-btn:hover {
+  background-color: #1d4ed8;
+  transform: scale(1.05);
+}
+
+/* Floating Create Button */
+.floating-create {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.floating-create a {
+  background-color: #2563eb;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px #2563eb88;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.floating-create a:hover {
+  background-color: #1e40af;
+  transform: scale(1.05);
+}

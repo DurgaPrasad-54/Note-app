@@ -1,6 +1,7 @@
 
 import {Link,useNavigate} from 'react-router-dom'
 import { useState } from 'react'
+import './logreg.css'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -30,13 +31,13 @@ const Login = () => {
       return res.json()
     }).then((data)=>{
       if(data.Token){
-        setMsg({type:'success',text:data.message})
+        // setMsg({type:'success',text:data.message})
         localStorage.setItem("Token",data.Token)
         setTimeout(()=>{
           navigate('/note')
         
 
-        },2000)
+        },1000)
       }
       else{
         setMsg({type:"error",text:data.message})
@@ -54,10 +55,11 @@ const Login = () => {
             <form className='form' onSubmit={handlesub}>
                 <input className='inp' type="email" name="email" placeholder="Enter your email" value={data.email} onChange={handleinp} required    />
                 <input className='inp' type="password" name="password" placeholder="Enter Your password" value={data.password} onChange={handleinp} required />
-                <button className='btn' type="submit">JOIN</button>
+                <button className='btn' type="submit">LOGIN</button>
                 <p>Don't have an account <Link to={'/register'}>Register</Link></p>
             </form>
-            <h1>{msg.text}</h1>
+            <h1 className={msg.type === 'success' ? 'success' : msg.type === 'error' ? 'error' : ''}>{msg.text}</h1>
+
         </div>
 
         </div>

@@ -20,6 +20,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="createnote" element={<Createnote/>}/>
       <Route path="/updatenote/:id" element={<Update />} />
+      <Route path='*' element={<h1>404 - Page Not Found</h1>} />
 
     </Routes>
       
