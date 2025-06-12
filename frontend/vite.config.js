@@ -3,10 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  build: {
-    outDir: 'dist',
-  },
-  server: {
-    historyApiFallback: true,  // not required for prod, but safe to include
-  }
+  // base: '/', // usually no need to change
 })
