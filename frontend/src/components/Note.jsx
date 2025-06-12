@@ -34,7 +34,7 @@ const Note = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setNotes(notes.filter(note => note._id !== id));
       })
       .catch((err) => {
@@ -59,6 +59,9 @@ const Note = () => {
       <h3>{note.title}</h3>
       <p>{note.content}</p>
       <div className="note-actions">
+        <span className="date" > {note.createdAt && new Date(note.createdAt).toLocaleDateString('en-US', 
+          {year: 'numeric',month: 'long',day:'numeric',hour:'2-digit',minute:"2-digit"}).replace(',', '')}</span>
+
         <button className="btn-sm delete-btn" onClick={() => handledel(note._id)}>Delete</button>
         <button className="btn-sm edit-btn" onClick={() => navigate(`/updatenote/${note._id}`)}>Edit</button>
       </div>
