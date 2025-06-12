@@ -31,12 +31,15 @@ const Profile = () => {
 
   }
   return (
+    <div className="profile-page">
     <div className='profile-container'>
       <h1>Profile</h1>
       <p>Username: {profile.username}</p>
       <p>Email: {profile.email}</p>
       <button onClick={handleclick}>Logout</button>
     </div>
+    </div>
+    
   )
 }
 
