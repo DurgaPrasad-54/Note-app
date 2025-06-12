@@ -29,13 +29,19 @@ const Login = () => {
     }).then((res)=>{
       return res.json()
     }).then((data)=>{
-      setMsg({type:'success',text:data.message})
-      localStorage.setItem("Token",data.Token)
-      setTimeout(()=>{
-        navigate('/note')
+      if(data.Token){
+        setMsg({type:'success',text:data.message})
+        localStorage.setItem("Token",data.Token)
+        setTimeout(()=>{
+          navigate('/note')
         
 
-      },2000)
+        },2000)
+      }
+      else{
+        setMsg({type:"error",text:data.message})
+      }
+      
     }).catch((err)=>{
       setMsg({type:"error",text:err.message})
     })
