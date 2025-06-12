@@ -5,6 +5,7 @@ import Login from './components/Login'
 import Note from './components/Note'
 import Profile from './components/Profile'
 import Createnote from './components/Createnote'
+import Update from './components/Update'
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
       <Route path='/note' element={<Note/>} />
       <Route path="/profile" element={<Profile />} />
       <Route path="createnote" element={<Createnote/>}/>
+      <Route path="/updatenote/:id" element={<Update />} />
 
     </Routes>
       

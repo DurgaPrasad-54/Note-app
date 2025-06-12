@@ -26,7 +26,7 @@ app.post('/register', async (req, res) =>{
         res.status(201).send({message:"Registation Successfull"})
     }
     catch(err){
-        res.status(500).send({message:'error in internal server',error:err})
+        res.status(501).send({message:'error in internal server',error:err})
     }
 });
 
@@ -35,81 +35,94 @@ app.post('/login',async (req,res)=>{
     try{
         const user = await User.findOne({email})
         if(!user){
-            return res.status(404).send({message:'User not found please register'})
+            res.status(501).send({message:'User not found please register'})
         }
         const match = await bcrypt.compare(password,user.password)
         if(!match){
-            return res.status(401).send({message:"Incorrect Password"})
+            res.status(501).send({message:"Incorrect Password"})
         }
 
         const token = jwt.sign({_id:user.id,email:user.email},"prasad")
-        res.status(200).send({message:"User login successfull",Token:token})
+        res.status(201).send({message:"User login successfull",Token:token})
 
     }
     catch(err){
-        res.status(500).send({message:'Error in login',error:err})
+        res.status(504).send({message:'Error in login',error:err})
     }
 })
-
 app.post("/createnote",verify, async (req,res)=>{
     const {title,content} = req.body
     try{
         const note = await Note.create({userId:req.user._id,title,content})
         res.status(201).send({message:'Note created',Note:note})
+
     }
     catch(err){
-        res.status(500).send({message:"error",error:err.message})
-    }
-})
+        res.status(501).send({message:"error",error:err.message})
 
+    }
+
+})
 app.get('/note',verify,async (req,res)=>{
     const usernote = req.user._id
     try{
         const note = await Note.find({userId:usernote})
-        if(note.length === 0){
-            return res.status(404).send({message:"No notes found"})
+        if(!note){
+            res.send({message:"No notes found"})
         }
-        res.status(200).send(note)
+        res.send(JSON.stringify(note))
+
     }
     catch(err){
-        res.status(500).send({message:'error',error:err})
+        res.status(501).send({message:'error',error:err})
     }
-})
 
-app.put("/upnote/:id", verify, async (req, res) => {
-    const id = req.params.id;
+})
+app.put('/upnote/:id', verify, async (req, res) => {
+  try {
     const { title, content } = req.body;
 
-    try {
-        const upnote = await Note.updateOne(
-            { _id: id, userId: req.user.id },
-            { $set: { title, content } }
-        );
-
-        res.status(200).send({ message: "Update Successful", note: upnote });
-    } catch (err) {
-        res.status(500).send({ message: "Internal Server Error", error: err });
+    if (!title || !content) {
+      return res.status(400).json({ message: "Title and content required" });
     }
+
+    const updatedNote = await Note.findByIdAndUpdate(
+      req.params.id,
+      { title, content },
+      { new: true }
+    );
+
+    if (!updatedNote) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
+    res.json({ message: "Note updated", updatedNote });
+  } catch (error) {
+    console.error("Update note error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
 app.delete("/deletenote/:id",verify,async (req,res)=>{
     const id = req.params.id
 
+
     try{
         const user = await Note.findOne({_id:id})
         if(!user){
-            return res.status(404).send({message:"Note not found"})
+            res.status(501).send({message:"Note not found"})
         }
         else{
             const del = await Note.deleteOne(user)
-            res.status(200).send({message:"Note delete successfull"})
+            res.status(201).send({message:"Note delete successfull"})
         }
+
+
     }
     catch(err){
-        res.status(500).send({message:"Internal server error",error:err})
+        res.status(501).send({message:"Internal server error",error:err})
     }
 })
-
 app.get('/profile', verify, async (req, res) => {
   try {
     console.log("Decoded JWT:", req.user);
@@ -118,13 +131,12 @@ app.get('/profile', verify, async (req, res) => {
 
     if (!user) return res.status(404).send({ message: "User not found" });
 
-    res.status(200).send({ username: user.username, email: user.email });
+    res.send({ username: user.username, email: user.email });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error fetching profile" });
   }
 });
-
 
 
 

@@ -50,7 +50,8 @@ const Note = () => {
             <h3>{note.title}</h3>
             <p>{note.content}</p>
             <button onClick={()=>{handledel(note._id)}}>delete</button>
-            <button>edit</button>
+            <button onClick={() => navigate(`/updatenote/${note._id}`)}>edit</button>
+
           </div>
         
         ))}
