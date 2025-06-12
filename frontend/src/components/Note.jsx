@@ -38,7 +38,7 @@ const Note = () => {
   const handledel = (id) => {
     if (!window.confirm("Are you sure you want to delete this note?")) return;
 
-    fetch(`${apppath}/deletenote/${id}`, {
+    fetch(`https://note-app-05gd.onrender.com/deletenote/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${Token}`
