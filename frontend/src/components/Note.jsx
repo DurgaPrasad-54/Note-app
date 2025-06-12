@@ -8,7 +8,7 @@ const Note = () => {
   const [notes, setNotes] = useState([])
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/note', {
+    fetch('https://note-app-05gd.onrender.com/note', {
       headers: {
         "Authorization": `Bearer ${Token}`
       }
@@ -26,7 +26,7 @@ const Note = () => {
   }
 
   const handledel = (id) => {
-    fetch(`http://127.0.0.1:8000/deletenote/${id}`, {
+    fetch(`https://note-app-05gd.onrender.com/deletenote/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${Token}`

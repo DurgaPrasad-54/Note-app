@@ -10,7 +10,7 @@ const Profile = () => {
   const token = localStorage.getItem("Token")
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/profile', {
+    fetch('https://note-app-05gd.onrender.com/profile', {
       method:"GET",
       headers: {
         "Authorization": `Bearer ${token}`
