@@ -22,7 +22,7 @@ const Createnote = () => {
     }
     function handlesub(e){
         e.preventDefault()
-        fetch('http://127.0.0.1:8000/createnote',{
+        fetch('https://note-app-05gd.onrender.com/createnote',{
             method:"POST",
             body:JSON.stringify(note),
             headers:{

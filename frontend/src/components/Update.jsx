@@ -16,7 +16,7 @@ const Update = () => {
 
   // Fetch current note details
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/note', {
+    fetch('https://note-app-05gd.onrender.com/note', {
       headers: {
         'Authorization': `Bearer ${Token}`
       }

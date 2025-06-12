@@ -22,7 +22,7 @@ const Register = () => {
   }
   function handlesub(e){
     e.preventDefault()
-    fetch('http://127.0.0.1:8000/register',{
+    fetch('https://note-app-05gd.onrender.com/register',{
       method:"POST",
       body:JSON.stringify(data),
       headers:{

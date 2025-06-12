@@ -21,7 +21,7 @@ const Login = () => {
   }
   function handlesub(e){
     e.preventDefault()
-    fetch('http://127.0.0.1:8000/login',{
+    fetch('https://note-app-05gd.onrender.com/login',{
       method:"POST",
       body:JSON.stringify(data),
       headers:{
