@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate,Link } from 'react-router-dom';
 import './create.css';
 
 const Update = () => {
@@ -9,6 +9,10 @@ const Update = () => {
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [msg, setMsg] = useState({
+    type: '',
+    text: ''
+  });
 
   // Fetch current note details
   useEffect(() => {
@@ -42,11 +46,14 @@ const Update = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        navigate('/note');
+        setMsg({ type: 'success', text: data.message });
+        setTimeout(() => {
+          navigate('/note');
+        }, 1000);
+        
       })
       .catch(err => {
-        console.error('Error updating note:', err);
+        setMsg({ type: 'error', text: err.message });
       });
   };
 
@@ -74,7 +81,9 @@ const Update = () => {
         />
         <button type="submit">Update Note</button>
       </form>
+      <h1 className={msg.type === 'success' ? 'success' : msg.type === 'error' ? 'error' : ''}>{msg.text}</h1>
       </div>
+      
     </div>
   );
 };
