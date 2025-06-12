@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './create.css';
 
 const Update = () => {
   const { id } = useParams();
@@ -50,25 +51,30 @@ const Update = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Update Note</h2>
+    <div className='main' >
+      <div className='inner'>
+      
       <form onSubmit={handleUpdate}>
+        <h1 className='createh1'>Update Note</h1>
         <input
+          className='cn'
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-        /><br /><br />
+        />
         <textarea
+          className='cn'
           rows="5"
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           required
-        /><br /><br />
+        />
         <button type="submit">Update Note</button>
       </form>
+      </div>
     </div>
   );
 };

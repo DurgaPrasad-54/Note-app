@@ -1,0 +1,127 @@
+/* Register.css */
+
+body {
+  background-color: #f5f7fa;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.inner {
+  background: white;
+  padding: 3rem 3.5rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.inner:hover {
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.inp {
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  border: 2px solid #d1d5db;
+  border-radius: 14px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inp:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 8px #2563ebaa;
+}
+
+.btn {
+  padding: 1rem 0;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px #2563ebaa;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: #1e40af;
+  transform: scale(1.05);
+}
+
+/* Spinner inside button */
+.btn-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+p {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+p a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+p a:hover {
+  color: #1e40af;
+}
+
+h1 {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  color: var(--msg-color, #333);
+  min-height: 1.4em;
+  user-select: none;
+}
+
+/* Success and error colors */
+h1.success {
+  color: #22c55e;
+}
+
+h1.error {
+  color: #ef4444;
+}

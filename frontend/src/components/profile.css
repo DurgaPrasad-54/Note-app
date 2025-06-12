@@ -1,0 +1,94 @@
+/* Profile.css */
+
+.profile-page {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: 'Inter', sans-serif;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header like Note page */
+.pro-header {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.app-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2563eb;
+  user-select: none;
+}
+
+.home-link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.home-link:hover {
+  color: #1e40af;
+}
+
+/* Profile container styled similar to note cards */
+.profile-container {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.profile-container:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  color: #2563eb;
+  user-select: none;
+}
+
+p {
+  font-size: 1rem;
+  color: #374151;
+  margin: 0.5rem 0;
+  transition: color 0.25s ease;
+}
+
+/* Logout button styled like note action buttons */
+button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 0;
+  width: 100%;
+  background-color: #ef4444; /* red like delete button */
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  
+}
+
+button:hover {
+  background-color: #164cc1;
+  color: white;
+
+}

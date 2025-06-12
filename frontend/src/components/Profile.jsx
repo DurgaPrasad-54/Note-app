@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
+import './profile.css'
 
 const Profile = () => {
   const navigate = useNavigate()
@@ -32,6 +33,12 @@ const Profile = () => {
   }
   return (
     <div className="profile-page">
+      <div className="pro-header">
+        <h1 className="app-title">Note App</h1>
+        <Link to={'/note'} className="home-link">Home</Link>
+
+      </div>
+      
     <div className='profile-container'>
       <h1>Profile</h1>
       <p>Username: {profile.username}</p>

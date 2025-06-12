@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import './note.css'
 
 const Note = () => {
   const navigate = useNavigate();
@@ -42,25 +43,32 @@ const Note = () => {
   };
 
   return (
-    <div className='main'>
-      <div className='header'>
-        <h1>Note App</h1>
-        <h1><Link to={'/profile'}>Profile</Link></h1>
+    <div className="note-container"> 
+      <div className="note-header">
+        <h2 className="app-title">Note App</h2>
+        <Link to={'/profile'} className="profile-link">Profile</Link>
       </div>
 
-      {notes.map((note, index) => (
-        <div key={index} className="note-card">
-          <h3>{note.title}</h3>
-          <p>{note.content}</p>
-          <div className="note-actions">
-            <button onClick={() => handledel(note._id)}>delete</button>
-            <button onClick={() => navigate(`/updatenote/${note._id}`)}>edit</button>
-          </div>
-        </div>
-      ))}
+      {notes.length === 0 ? (
+  <p style={{ textAlign: 'center', color: '#555', marginTop: '2rem' }}>
+    No notes available
+  </p>
+) : (
+  notes.map((note, index) => (
+    <div key={index} className="note-card">
+      <h3>{note.title}</h3>
+      <p>{note.content}</p>
+      <div className="note-actions">
+        <button className="btn-sm delete-btn" onClick={() => handledel(note._id)}>Delete</button>
+        <button className="btn-sm edit-btn" onClick={() => navigate(`/updatenote/${note._id}`)}>Edit</button>
+      </div>
+    </div>
+  ))
+)}
 
-      <div>
-        <h3 className='new-note-link'><Link to={'/createnote'}>New Note</Link></h3>
+
+      <div className="floating-create">
+        <Link to={'/createnote'}>+ New Note</Link>
       </div>
     </div>
   )
