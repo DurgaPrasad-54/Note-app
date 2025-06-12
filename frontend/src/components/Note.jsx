@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './note.css'
 
+
 const Note = () => {
   const navigate = useNavigate();
   const Token = localStorage.getItem('Token')
@@ -37,7 +38,7 @@ const Note = () => {
   const handledel = (id) => {
     if (!window.confirm("Are you sure you want to delete this note?")) return;
 
-    fetch(`https://note-app-05gd.onrender.com/deletenote/${id}`, {
+    fetch(`${apppath}/deletenote/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${Token}`
