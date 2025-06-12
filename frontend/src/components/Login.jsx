@@ -53,6 +53,7 @@ const Login = () => {
         <div className='main'>
         <div className='inner'>
             <form className='form' onSubmit={handlesub}>
+              
                 <input className='inp' type="email" name="email" placeholder="Enter your email" value={data.email} onChange={handleinp} required    />
                 <input className='inp' type="password" name="password" placeholder="Enter Your password" value={data.password} onChange={handleinp} required />
                 <button className='btn' type="submit">LOGIN</button>
