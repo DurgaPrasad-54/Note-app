@@ -1,4 +1,7 @@
 const jwt = require("jsonwebtoken")
+const dotenv = require('dotenv');
+dotenv.config();
+const Token = process.env.Token
 
 
 function verify(req,res,next){
@@ -12,7 +15,7 @@ function verify(req,res,next){
         return res.send({message:'token is missing'})
     }
     else{
-        jwt.verify(token,'prasad',(error,decode)=>{
+        jwt.verify(token,Token,(error,decode)=>{
             if(error){
                 return res.status(501).send({message:'invalid token'})
 

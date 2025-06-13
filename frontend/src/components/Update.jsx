@@ -3,6 +3,7 @@ import { useParams, useNavigate,Link } from 'react-router-dom';
 import './create.css';
 
 const Update = () => {
+  const API_PATH = import.meta.env.VITE_API_PATH;
   const { id } = useParams();
   const navigate = useNavigate();
   const Token = localStorage.getItem('Token');
@@ -16,7 +17,7 @@ const Update = () => {
 
   // Fetch current note details
   useEffect(() => {
-    fetch('https://note-app-05gd.onrender.com/note', {
+    fetch(`${API_PATH}/note`, {
       headers: {
         'Authorization': `Bearer ${Token}`
       }
@@ -36,7 +37,7 @@ const Update = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    fetch(`https://note-app-05gd.onrender.com/upnote/${id}`, {
+    fetch(`${API_PATH}/upnote/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
