@@ -7,7 +7,8 @@ const User = require('./Modules/User');
 const Note = require('./Modules/Note');
 const verify = require('./verification/verify')
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({ path: './backend/.env' });
+
 
 const mongopath = process.env.mongopath
 const Token = process.env.Token
