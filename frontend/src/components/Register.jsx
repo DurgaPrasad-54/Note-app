@@ -4,6 +4,7 @@ import { useState } from 'react'
 import './logreg.css'
 
 const Register = () => {
+  const API_PATH = import.meta.env.VITE_API_PATH;
   const [data,setData] = useState({
     username:'',
     email:"",
@@ -22,7 +23,7 @@ const Register = () => {
   }
   function handlesub(e){
     e.preventDefault()
-    fetch('https://note-app-05gd.onrender.com/register',{
+    fetch(`${API_PATH}/register`,{
       method:"POST",
       body:JSON.stringify(data),
       headers:{

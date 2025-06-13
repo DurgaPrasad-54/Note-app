@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import './logreg.css';
 
 const Login = () => {
+  const API_PATH = import.meta.env.VITE_API_PATH;  
   const navigate = useNavigate();
   const [data, setData] = useState({ email: '', password: '' });
   const [msg, setMsg] = useState({ type: '', text: '' });
-  const [loading, setLoading] = useState(false); // ✅ Loading state
+  const [loading, setLoading] = useState(false); 
 
   function handleinp(event) {
     const { name, value } = event.target;
@@ -15,9 +16,9 @@ const Login = () => {
 
   function handlesub(e) {
     e.preventDefault();
-    setLoading(true); // ✅ Start loading
+    setLoading(true); 
 
-    fetch('https://note-app-05gd.onrender.com/login', {
+    fetch(`${API_PATH}/login`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

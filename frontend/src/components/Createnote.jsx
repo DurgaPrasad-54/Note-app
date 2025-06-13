@@ -3,6 +3,8 @@ import {useNavigate} from 'react-router-dom'
 import './create.css'
 
 const Createnote = () => {
+    const API_PATH = import.meta.env.VITE_API_PATH;
+
     const Token  = localStorage.getItem("Token")
     const navigate = useNavigate()
     const [note,setNote] = useState({
@@ -22,7 +24,7 @@ const Createnote = () => {
     }
     function handlesub(e){
         e.preventDefault()
-        fetch('https://note-app-05gd.onrender.com/createnote',{
+        fetch(`${API_PATH}/createnote`,{
             method:"POST",
             body:JSON.stringify(note),
             headers:{

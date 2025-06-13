@@ -3,6 +3,7 @@ import {useNavigate,Link} from 'react-router-dom'
 import './profile.css'
 
 const Profile = () => {
+  const API_PATH = import.meta.env.VITE_API_PATH;
   const navigate = useNavigate()
   const [profile, setProfile] = useState({
     username:"",email:""
@@ -10,7 +11,7 @@ const Profile = () => {
   const token = localStorage.getItem("Token")
 
   useEffect(() => {
-    fetch('https://note-app-05gd.onrender.com/profile', {
+    fetch(`${API_PATH}/profile`, {
       method:"GET",
       headers: {
         "Authorization": `Bearer ${token}`

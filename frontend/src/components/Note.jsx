@@ -4,6 +4,7 @@ import './note.css'
 
 
 const Note = () => {
+  const API_PATH = import.meta.env.VITE_API_PATH;
   const navigate = useNavigate();
   const Token = localStorage.getItem('Token')
   const [notes, setNotes] = useState([])
@@ -14,7 +15,7 @@ const Note = () => {
       return;
     }
 
-    fetch('https://note-app-05gd.onrender.com/note', {
+    fetch(`${API_PATH}/note`, {
       headers: {
         "Authorization": `Bearer ${Token}`
       }
@@ -38,7 +39,7 @@ const Note = () => {
   const handledel = (id) => {
     if (!window.confirm("Are you sure you want to delete this note?")) return;
 
-    fetch(`https://note-app-05gd.onrender.com/deletenote/${id}`, {
+    fetch(`${API_PATH}/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${Token}`

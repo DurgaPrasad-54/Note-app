@@ -6,9 +6,13 @@ const cors = require('cors');
 const User = require('./Modules/User');
 const Note = require('./Modules/Note');
 const verify = require('./verification/verify')
+const dotenv = require('dotenv');
+dotenv.config();
 
+const mongopath = process.env.mongopath
+const Token = process.env.Token
 
-mongoose.connect('mongodb+srv://prasad87:3GYCs7lVGpBc4ifk@cluster1.keqhtdg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1')
+mongoose.connect(mongopath)
 .then(() => {
     console.log("Connected to MongoDB");
 }).catch(err => {
@@ -43,7 +47,7 @@ app.post('/login',async (req,res)=>{
             res.status(501).send({message:"Incorrect Password"})
         }
 
-        const token = jwt.sign({_id:user.id,email:user.email},"prasad")
+        const token = jwt.sign({_id:user.id,email:user.email},Token)
         res.status(201).send({message:"User login successfull",Token:token})
 
     }
