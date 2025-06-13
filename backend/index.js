@@ -10,8 +10,8 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './backend/.env' });
 
 
-const mongopath = process.env.mongopath
-const Token = process.env.Token
+const mongopath = process.env.MONGOPATH
+const Token = process.env.TOKEN
 
 mongoose.connect(mongopath)
 .then(() => {
