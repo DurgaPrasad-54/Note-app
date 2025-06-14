@@ -51,11 +51,11 @@ body {
 }
 
 .btn {
-  padding: 1rem 0;
+  padding: 0.8rem 1.4rem;
   background-color: #2563eb;
   color: white;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: none;
   border-radius: 14px;
   cursor: pointer;
@@ -65,11 +65,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .btn:hover:not(:disabled) {
   background-color: #1e40af;
-  transform: scale(1.05);
+  transform: scale(1);
 }
 
 /* Spinner inside button */
