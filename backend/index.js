@@ -27,6 +27,10 @@ app.use(cors());
 app.post('/register', async (req, res) =>{
     const {username,email,password}=req.body;
     try{
+        const usermail = await User.findOne({email})
+        if(usermail){
+            return res.status(501).send({message:"User already exists, please login"})
+        }
         const hashedpassword = await bcrypt.hash(password,10)
         const user = await User.create({username,email,password:hashedpassword})
         res.status(201).send({message:"Registation Successfull"})
