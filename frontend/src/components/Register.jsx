@@ -33,15 +33,17 @@ const Register = () => {
       return res.json()
     })
     .then((data)=>{
-      console.log(data)
-      setMsg({type:'success',text:data.message})
-      setTimeout(()=>{
-        
-        navigate('/login')
-
-      },1500)
-
-    }).catch((err)=>{
+      
+      if (data.error) {
+        setMsg({ type: 'error', text: data.message });
+      } 
+      else {
+        setMsg({ type: 'success', text: data.message });
+        setTimeout(() => {
+         navigate('/login');
+        }, 1500);
+      }
+      }).catch((err)=>{
 
       setMsg({type:"error",text:err.message})
       
