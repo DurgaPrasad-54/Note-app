@@ -14,7 +14,10 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    otp:Number,
+    otpexpire:Date
+
 }, { timestamps: true });
 const User = mongoose.model('users', userSchema);
 module.exports = User;

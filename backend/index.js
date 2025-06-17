@@ -6,8 +6,10 @@ const cors = require('cors');
 const User = require('./Modules/User');
 const Note = require('./Modules/Note');
 const verify = require('./verification/verify')
+const sendMail = require('./mail')
 const dotenv = require('dotenv');
 dotenv.config({ path: './backend/.env' });
+
 
 
 const mongopath = process.env.MONGOPATH
@@ -45,11 +47,11 @@ app.post('/login',async (req,res)=>{
     try{
         const user = await User.findOne({email})
         if(!user){
-            res.status(501).send({message:'User not found please register'})
+            return res.status(501).send({message:'User not found please register'})
         }
         const match = await bcrypt.compare(password,user.password)
         if(!match){
-            res.status(501).send({message:"Incorrect Password"})
+            return res.status(501).send({message:"Incorrect Password"})
         }
 
         const token = jwt.sign({_id:user.id,email:user.email},Token)
@@ -78,7 +80,7 @@ app.get('/note',verify,async (req,res)=>{
     try{
         const note = await Note.find({userId:usernote})
         if(!note){
-            res.send({message:"No notes found"})
+            return res.send({message:"No notes found"})
         }
         res.send(JSON.stringify(note))
 
@@ -120,11 +122,11 @@ app.delete("/deletenote/:id",verify,async (req,res)=>{
     try{
         const user = await Note.findOne({_id:id})
         if(!user){
-            res.status(501).send({message:"Note not found"})
+            return res.status(501).send({message:"Note not found"})
         }
         else{
             const del = await Note.deleteOne(user)
-            res.status(201).send({message:"Note delete successfull"})
+            return res.status(201).send({message:"Note delete successfull"})
         }
 
 
@@ -147,6 +149,58 @@ app.get('/profile', verify, async (req, res) => {
     res.status(500).json({ message: "Error fetching profile" });
   }
 });
+app.put('/sendotp', async(req,res)=>{
+    const {email} = req.body;
+    try{
+        const user = await User.findOne({email});
+        if(!user){
+            return res.send({message:'User not found'})
+        }
+        else{
+            otp = Math.floor(100000 + Math.random()*900000);
+            otpexpire = new Date(Date.now() + 15 * 60 *1000);
+            await User.updateOne({email:email},{$set:{otp:otp,otpexpire:otpexpire}})
+            const send = await sendMail(email,"Note App OTP",`Your OTP ${otp}`)
+            res.send({message:'OTP SENT PLEASE CHECK YOUR MAIL'})
+        }
+
+    }
+    catch(err){
+        res.send({message:"error occurs during send otp",error:err})
+
+    }
+})
+app.put('/verifyotp', async (req, res) => {
+    const { otp, password } = req.body;
+
+    try {
+        const user = await User.findOne({ otp });
+
+        if (!user) {
+            return res.send({ message: 'INVALID OTP' });
+        }
+
+        if (user.otpexpire < new Date()) {
+            return res.send({ message: "OTP Expired" });
+        }
+
+        const newhash = await bcrypt.hash(password, 10);
+
+        await User.updateOne(
+            { _id: user._id },
+            {
+                $set: { password: newhash },
+                $unset: { otp: "", otpexpire: "" } 
+            }
+        );
+
+        return res.send({ message: 'Password updated successfully' });
+
+    } catch (err) {
+        return res.send({ message: "Password update failed", error: err });
+    }
+});
+
 
 
 
