@@ -60,7 +60,7 @@ body {
   border-radius: 14px;
   cursor: pointer;
   box-shadow: 0 8px 20px #2563ebaa;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+
   user-select: none;
   display: flex;
   justify-content: center;
@@ -126,3 +126,21 @@ h1.success {
 h1.error {
   color: #ef4444;
 }
+.Forget {
+  display: block;
+  margin-top: 0.5rem;
+  text-align: left;
+  font-size: 0.9rem;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.Forget:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
