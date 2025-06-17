@@ -42,6 +42,7 @@ const Login = () => {
         setLoading(false); // ✅ Stop loading on error
         setMsg({ type: 'error', text: err.message });
       });
+    
   }
 
   return (
@@ -66,6 +67,8 @@ const Login = () => {
             onChange={handleinp}
             required
           />
+          <Link to="/forgetpassword" className='Forget'>Forget password ?</Link>
+          
 
           <button className="btn" type="submit" disabled={loading}>
             {loading && <span className="btn-spinner"></span>}
