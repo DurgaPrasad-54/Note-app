@@ -39,7 +39,7 @@ const Note = () => {
   const handledel = (id) => {
     if (!window.confirm("Are you sure you want to delete this note?")) return;
 
-    fetch(`${API_PATH}/${id}`, {
+    fetch(`${API_PATH}/deletenote/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${Token}`
@@ -48,7 +48,11 @@ const Note = () => {
       .then((res) =>{
         return res.json()})
       .then((data) => {
-        setNotes(notes.filter(note => note._id !== id));
+        if(data){
+          setNotes(notes.filter(note => note._id !== id));
+        }
+
+        
       })
       .catch((err) => {
         console.log(err);
