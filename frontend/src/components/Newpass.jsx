@@ -55,7 +55,7 @@ const Newpass = () => {
         <form className="form" onSubmit={handlesub}>
           <input
             className="inp"
-            type="Number"
+            type="text"
             name="otp"
             placeholder="Enter OTP"
             value={data.otp}

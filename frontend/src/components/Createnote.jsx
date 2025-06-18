@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 import './create.css'
 
 const Createnote = () => {
@@ -48,13 +48,13 @@ const Createnote = () => {
     
   return (
     <div className='main'>
-
         <div className='inner'>
+            <Link className='back' to='/note'><strong>back to home</strong></Link>
             <form onSubmit={handlesub}>
                 <h1 className='createh1'>Create Note</h1>
                 <input className='cn' type='text' name='title' placeholder='Title' value={note.title} onChange={handleinp} required />
                 <textarea className='cn' name="content" placeholder="Write your note here..." value={note.content} onChange={handleinp} required></textarea>
-                <button type='submit'>Create Note</button>
+                <button className='btn' type='submit'>Create Note</button>
 
 
             </form>

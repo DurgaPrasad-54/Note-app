@@ -47,7 +47,7 @@ const Profile = () => {
       <h1>Profile</h1>
       <p>Username: {profile.username}</p>
       <p>Email: {profile.email}</p>
-      <button onClick={handleclick}>Logout</button>
+      <button className='btn' onClick={handleclick}>Logout</button>
     </div>
     </div>
     

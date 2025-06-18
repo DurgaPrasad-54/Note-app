@@ -95,3 +95,15 @@ h1.success {
 h1.error {
   color: #ef4444;
 }
+.back{
+  display: block;
+  margin-top: 0.5rem;
+  text-align: left;
+  font-size: 0.9rem;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
