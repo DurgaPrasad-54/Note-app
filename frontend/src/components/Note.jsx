@@ -45,7 +45,8 @@ const Note = () => {
         'Authorization': `Bearer ${Token}`
       }
     })
-      .then((res) => res.json())
+      .then((res) =>{
+        return res.json()})
       .then((data) => {
         setNotes(notes.filter(note => note._id !== id));
       })
@@ -90,7 +91,7 @@ const Note = () => {
       )}
 
       <div className="floating-create">
-        <Link to={'/createnote'}>+ New Note</Link>
+        <Link className='btn' to={'/createnote'}>+ New Note</Link>
       </div>
     </div>
   )

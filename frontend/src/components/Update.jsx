@@ -61,7 +61,7 @@ const Update = () => {
   return (
     <div className='main' >
       <div className='inner'>
-      
+        <Link className='back' to='/note'><strong>back to home</strong></Link>
       <form onSubmit={handleUpdate}>
         <h1 className='createh1'>Update Note</h1>
         <input
@@ -80,7 +80,7 @@ const Update = () => {
           onChange={(e) => setContent(e.target.value)}
           required
         />
-        <button type="submit">Update Note</button>
+        <button className='btn' type="submit">Update Note</button>
       </form>
       <h1 className={msg.type === 'success' ? 'success' : msg.type === 'error' ? 'error' : ''}>{msg.text}</h1>
       </div>

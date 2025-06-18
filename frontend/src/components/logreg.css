@@ -78,8 +78,8 @@ body {
   border: 3px solid rgba(255, 255, 255, 0.3);
   border-top: 3px solid white;
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 10px;
+  height: 10px;
   animation: spin 1s linear infinite;
   display: inline-block;
   vertical-align: middle;

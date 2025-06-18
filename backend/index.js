@@ -116,9 +116,7 @@ app.put('/upnote/:id', verify, async (req, res) => {
 });
 
 app.delete("/deletenote/:id",verify,async (req,res)=>{
-    const id = req.params.id
-
-
+    const id = req.params.id;
     try{
         const user = await Note.findOne({_id:id})
         if(!user){
@@ -128,8 +126,6 @@ app.delete("/deletenote/:id",verify,async (req,res)=>{
             const del = await Note.deleteOne(user)
             return res.status(201).send({message:"Note delete successfull"})
         }
-
-
     }
     catch(err){
         res.status(501).send({message:"Internal server error",error:err})
@@ -163,7 +159,6 @@ app.put('/sendotp', async(req,res)=>{
             const send = await sendMail(email,"Note App OTP",`Your OTP ${otp}`)
             res.send({message:'OTP SENT PLEASE CHECK YOUR MAIL'})
         }
-
     }
     catch(err){
         res.send({message:"error occurs during send otp",error:err})
@@ -175,17 +170,13 @@ app.put('/verifyotp', async (req, res) => {
 
     try {
         const user = await User.findOne({ otp });
-
         if (!user) {
             return res.send({ message: 'INVALID OTP' });
         }
-
         if (user.otpexpire < new Date()) {
             return res.send({ message: "OTP Expired" });
         }
-
         const newhash = await bcrypt.hash(password, 10);
-
         await User.updateOne(
             { _id: user._id },
             {
@@ -193,17 +184,11 @@ app.put('/verifyotp', async (req, res) => {
                 $unset: { otp: "", otpexpire: "" } 
             }
         );
-
         return res.send({ message: 'Password updated successfully' });
-
     } catch (err) {
         return res.send({ message: "Password update failed", error: err });
     }
 });
-
-
-
-
 
 
 app.listen(8000,()=>{
