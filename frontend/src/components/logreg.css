@@ -16,7 +16,7 @@ body {
 }
 
 .inner {
-  background: white;
+  background: rgb(138, 137, 137);
   padding: 3rem 3.5rem;
   border-radius: 16px;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
